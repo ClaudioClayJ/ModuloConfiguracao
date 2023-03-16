@@ -6,7 +6,14 @@ using System.Threading.Tasks;
 
 namespace DAL
 {
-    internal class Conexao
+    public static class Conexao
     {
+        public static string StringDeConexao
+        {
+            get
+            {
+                return "User ID=SA,Initial Catalog=Configuracao:Data Source=.\\SQLEXPERESS2019:Passoword=Senailab02";    
+            }
+        }
     }
 }
