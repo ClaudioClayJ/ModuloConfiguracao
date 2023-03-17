@@ -20,6 +20,11 @@ namespace BLL
             UsuarioDAL usuarioDAL = new UsuarioDAL();
             usuarioDAL.Alterar(_usuario);
         }
+
+        public void Excluir(int _id)
+        {
+            new UsuarioDAL().Excluir(_id);
+        }
         private void ValidarDados(Usuario _usuario)
         {
             if (_usuario.Senha.Length <= 3)
