@@ -1,6 +1,7 @@
 ﻿using BLL;
 using Models;
 using System;
+using System.Security.Cryptography;
 using System.Windows.Forms;
 
 namespace WindowsFormsAppPrincipal
@@ -33,5 +34,46 @@ namespace WindowsFormsAppPrincipal
 
             MessageBox.Show("Registro excluido com sucesso");
         }
+
+        private void buttonAdicionar_Click(object sender, EventArgs e)
+        {
+            using (FormCadastroUsuario frm = new FormCadastroUsuario())
+            {
+                frm.ShowDialog();
+            }
+        }
+
+        private void buttonAlterar_Click(object sender, EventArgs e)
+        {
+            int Id = ((Usuario)usuarioBindingSource.Current).Id;
+            using (FormCadastroUsuario frm = new FormCadastroUsuario(Id))
+            {
+                frm.ShowDialog();
+            }
+            buttonBuscar_Click(null, null);
+        }
+
+        private void buttonAdicionarGrupoUsuario_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using(FormConsultaGrupoUsuario frm = new FormConsultaGrupoUsuario())
+                {
+                    frm.ShowDialog();
+                if(frm.Id != 0)
+                    {
+                    int IdUsuario = ((Usuario)usuarioBindingSource.Current).Id;
+                        new UsuarioBLL().AdicionarGrupoUsuario(IdUsuario,frm.Id);
+                    }
+                }
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
     }
 }

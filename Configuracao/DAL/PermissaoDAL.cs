@@ -23,7 +23,7 @@ namespace DAL
             }
             catch (Exception ex)
             {
-                throw; new Exception("ocorreu um erro ao tentar inserir uma permisaão do grupo no banco de dados: ", ex);
+                throw new Exception("ocorreu um erro ao tentar inserir uma permisaão do grupo no banco de dados: ", ex);
             }
             finally
             {
@@ -152,7 +152,7 @@ namespace DAL
             }
             catch (Exception ex)
             {
-                throw; new Exception("ocorreu um erro ao tentar alterar a permissao no banco de dados: ", ex);
+                throw new Exception("ocorreu um erro ao tentar alterar a permissao no banco de dados: ", ex);
             }
             finally
             {
@@ -176,7 +176,7 @@ namespace DAL
             }
             catch (Exception ex)
             {
-                throw; new Exception("ocorreu um erro ao tentar excluir a permissao no banco de dados: ", ex);
+                throw new Exception("ocorreu um erro ao tentar excluir a permissao no banco de dados: ", ex);
             }
             finally
             {

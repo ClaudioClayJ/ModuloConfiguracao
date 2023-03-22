@@ -17,15 +17,15 @@ namespace WindowsFormsAppPrincipal
         public FormPrincipal()
         {
             InitializeComponent();
-            Usuario usuario = new Usuario();
+           /* Usuario usuario = new Usuario();
             usuario.Nome = "Claudio";
             usuario.NomeUsuario = "Claudio_Junior";
             usuario.Ativo = true;
             usuario.CPF = "12345678909";
             usuario.Senha = "Cj123";
-            usuario.Email = "ClaudioFagundes@Gmail.com";
+            usuario.Email = "ClaudioFagundes@Gmail.com";*/
 
-            new UsuarioBLL().Inserir(usuario);
+           // new UsuarioBLL().Inserir(usuario);
         }
 
         private void FormPrincipal_Load(object sender, EventArgs e)

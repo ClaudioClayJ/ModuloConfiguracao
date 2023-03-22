@@ -15,7 +15,6 @@ namespace BLL
         }
         public void Alterar(Usuario _usuario)
         {
-
             ValidarDados(_usuario);
             UsuarioDAL usuarioDAL = new UsuarioDAL();
             usuarioDAL.Alterar(_usuario);
@@ -49,6 +48,12 @@ namespace BLL
         public Usuario BuscarPorNome(string _nome)
         {
             return new UsuarioDAL().BuscarPorNome(_nome);
+        }
+
+        public void AdicionarGrupoUsuario(int _idUsuario, int _id)
+        {
+            if (!new UsuarioDAL().UsuarioPertenceAoGrupo(_idUsuario, _id))
+                new UsuarioDAL().AdicionarGrupoUsuario(_idUsuario, _id);
         }
     }
 }

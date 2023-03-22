@@ -29,7 +29,7 @@ namespace DAL
             }
             catch (Exception ex)
             {
-                throw; new Exception("ocorreu um erro ao tentar inserir um usuario no banco de dados: ", ex);
+                throw new Exception("ocorreu um erro ao tentar inserir um usuario no banco de dados: ", ex);
             }
             finally
             {
@@ -62,6 +62,7 @@ namespace DAL
                         usuario.CPF = rd["CPF"].ToString();
                         usuario.Ativo = Convert.ToBoolean(rd["Ativo"]);
                         usuario.Senha = rd["Senha"].ToString();
+                        usuario.GrupoUsuarios = new GrupoUsuarioDAL().BuscarPorIdUsuario(usuario.Id);
                         usuarios.Add(usuario);
                     }
                 }
@@ -168,7 +169,7 @@ namespace DAL
                 cmd.Parameters.AddWithValue("@CPF", _usuario.CPF);
                 cmd.Parameters.AddWithValue("@Ativo", _usuario.Ativo);
                 cmd.Parameters.AddWithValue("@Senha", _usuario.Senha);
-                cmd.Parameters.AddWithValue("@Id", _usuario.Id);
+                //cmd.Parameters.AddWithValue("@Id", _usuario.Id);
 
                 cmd.Connection = cn;
                 cn.Open();
@@ -176,7 +177,7 @@ namespace DAL
             }
             catch (Exception ex)
             {
-                throw; new Exception("ocorreu um erro ao tentar alterar o usuario no banco de dados: ", ex);
+                throw new Exception("ocorreu um erro ao tentar alterar o usuario no banco de dados: ", ex);
             }
             finally
             {
@@ -202,7 +203,7 @@ namespace DAL
             }
             catch (Exception ex)
             {
-                throw; new Exception("ocorreu um erro ao tentar excluir o usuario no banco de dados: ", ex);
+                throw new Exception("ocorreu um erro ao tentar excluir o usuario no banco de dados: ", ex);
             }
             finally
             {
@@ -277,6 +278,62 @@ namespace DAL
             catch (Exception ex)
             {
                 throw new Exception("Ocorreu um erro ao tentar buscar o Nome do usuario no banco de dados", ex);
+            }
+            finally
+            {
+                cn.Close();
+            }
+        }
+
+        public bool UsuarioPertenceAoGrupo(int _idUsuario, int _idGrupoUsuario)
+        {
+            SqlConnection cn = new SqlConnection(Conexao.StringDeConexao);
+            try
+            {
+                SqlCommand cmd = cn.CreateCommand();
+                cmd.Connection = cn;
+                cmd.CommandText = "SELECT 1 FROM UsuarioGrupoUsuario WHERE CodUsuario AND CodGrupoUsuario = @CodGrupoUsuario";
+                                  
+                cmd.CommandType = System.Data.CommandType.Text;
+                cmd.Parameters.AddWithValue("@CodUsuario", _idUsuario);
+                cmd.Parameters.AddWithValue("@CodGrupoUsuario", _idGrupoUsuario);
+                cn.Open();
+                cmd.ExecuteNonQuery();
+                using (SqlDataReader rd = cmd.ExecuteReader())
+                {
+                    if (rd.Read())
+                        return true;
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("ocorreu um erro ao verificar a existencia de um grupo de um usuario no banco de dados: ", ex);
+            }
+            finally
+            {
+                cn.Close();
+            }
+        }
+
+        public void AdicionarGrupoUsuario(int _idUsuario, int _idGrupoUsuario)
+        {
+            SqlConnection cn = new SqlConnection(Conexao.StringDeConexao);
+            try
+            {
+                SqlCommand cmd = cn.CreateCommand();
+                cmd.CommandText = @"INSERT INTO UsuarioGrupoUsuario(CodUsuario,CodGrupoUsuario)
+                                    VALUES(@CodUsuario,@CodGrupoUsuario)";
+                cmd.CommandType = System.Data.CommandType.Text;
+                cmd.Parameters.AddWithValue("@CodUsuario", _idUsuario);
+                cmd.Parameters.AddWithValue("@CodGrupoUsuario", _idGrupoUsuario);
+                cmd.Connection = cn;
+                cn.Open();
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("ocorreu um erro ao tentar vincular um grupo a um usuario no banco de dados: ", ex);
             }
             finally
             {
