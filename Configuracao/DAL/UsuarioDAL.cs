@@ -2,12 +2,13 @@
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Security.Cryptography;
 
 namespace DAL
 {
     public class UsuarioDAL
     {
-        public void Inserir(Usuario _usuario)
+        public void Inserir(Usuario _usuario, string _confirmarSenha)
         {
             SqlConnection cn = new SqlConnection(Conexao.StringDeConexao);
             try
@@ -89,7 +90,7 @@ namespace DAL
                 cmd.Connection = cn;
                 cmd.CommandText = "SELECT Id, Nome, NomeUsuario, Email, CPF, Ativo, Senha FROM Usuario WHERE NomeUsuario = @NomeUsuario";
                 cmd.CommandType = System.Data.CommandType.Text;
-                cmd.Parameters.AddWithValue("@NomeUsusario", _nomeUsuario);
+                cmd.Parameters.AddWithValue("@NomeUsuario", _nomeUsuario);
                 cn.Open();
                 using (SqlDataReader rd = cmd.ExecuteReader())
                 {
@@ -125,7 +126,7 @@ namespace DAL
             {
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = cn;
-                cmd.CommandText = "SELECT Id, Nome, NomeUsuario, Email, CPF, Ativo, Senha FROM Usuario";
+                cmd.CommandText = "SELECT Id, Nome, NomeUsuario, Email, CPF, Ativo, Senha FROM Usuario WHERE Id = @Id";
                 cmd.CommandType = System.Data.CommandType.Text;
                 cmd.Parameters.AddWithValue("@Id", _id);
                 cn.Open();
@@ -155,13 +156,13 @@ namespace DAL
             }
         }
 
-    public void Alterar(Usuario _usuario)
+    public void Alterar(Usuario _usuario, string _confirmarSenha)
         {
             SqlConnection cn = new SqlConnection(Conexao.StringDeConexao);
             try
             {
                 SqlCommand cmd = cn.CreateCommand();
-                cmd.CommandText = "UPDATE Usuario SET Nome = @Nome, NomeUsuario = @NomeUsuario, Email = @Email, CPF = @CPF, Ativo = @Ativo, Senha =@Senha WHERE Id= @Id";
+                cmd.CommandText = "UPDATE Usuario SET Nome = @Nome, NomeUsuario = @NomeUsuario, Email = @Email, CPF = @CPF, Ativo = @Ativo, Senha = @Senha WHERE Id = @Id";
                 cmd.CommandType = System.Data.CommandType.Text;
                 cmd.Parameters.AddWithValue("@Nome", _usuario.Nome);
                 cmd.Parameters.AddWithValue("@NomeUsuario", _usuario.NomeUsuario);
@@ -169,7 +170,7 @@ namespace DAL
                 cmd.Parameters.AddWithValue("@CPF", _usuario.CPF);
                 cmd.Parameters.AddWithValue("@Ativo", _usuario.Ativo);
                 cmd.Parameters.AddWithValue("@Senha", _usuario.Senha);
-                //cmd.Parameters.AddWithValue("@Id", _usuario.Id);
+                cmd.Parameters.AddWithValue("@Id", _usuario.Id);
 
                 cmd.Connection = cn;
                 cn.Open();
@@ -334,6 +335,31 @@ namespace DAL
             catch (Exception ex)
             {
                 throw new Exception("ocorreu um erro ao tentar vincular um grupo a um usuario no banco de dados: ", ex);
+            }
+            finally
+            {
+                cn.Close();
+            }
+        }
+
+        public void RemoverGrupoUsuario(int _idUsuario, int _idGrupoUsuario)
+        {
+            SqlConnection cn = new SqlConnection(Conexao.StringDeConexao);
+            try
+            {
+                SqlCommand cmd = cn.CreateCommand();
+                cmd.CommandText = "DELETE FROM UsuarioGrupoUsuario WHERE CodUsuario = @CodUsuario AND CodGrupoUsuario = @CodGrupoUsuario";
+                cmd.CommandType = System.Data.CommandType.Text;
+                cmd.Parameters.AddWithValue("@CodUsuario", _idUsuario);
+                cmd.Parameters.AddWithValue("@CodGrupoUsuario", _idGrupoUsuario);
+
+                cmd.Connection = cn;
+                cn.Open();
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("ocorreu um erro ao tentar excluir o usuario no banco de dados: ", ex);
             }
             finally
             {

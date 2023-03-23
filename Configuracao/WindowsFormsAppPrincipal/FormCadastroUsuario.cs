@@ -23,21 +23,32 @@ namespace WindowsFormsAppPrincipal
 
         private void buttonSalvarUsuario_Click(object sender, EventArgs e)
         {
+            try
+            {
             UsuarioBLL usuarioBLL = new UsuarioBLL();
             usuarioBindingSource.EndEdit();
             if (Id == 0)
-                usuarioBLL.Inserir((Usuario)usuarioBindingSource.Current);
+                usuarioBLL.Inserir((Usuario)usuarioBindingSource.Current,textBoxConfirmarSenha.Text);
             else
-                usuarioBLL.Alterar((Usuario)usuarioBindingSource.Current);
+                usuarioBLL.Alterar((Usuario)usuarioBindingSource.Current,textBoxConfirmarSenha.Text);
             MessageBox.Show("Registro Salvo com Sucesso");
             Close();
 
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void FormCadastroUsuario_Load(object sender, EventArgs e)
         {
             if (Id == 0)
                 usuarioBindingSource.AddNew();
+            else
+                usuarioBindingSource.DataSource = new UsuarioBLL().BuscarPorId(Id);
         }
 
     }

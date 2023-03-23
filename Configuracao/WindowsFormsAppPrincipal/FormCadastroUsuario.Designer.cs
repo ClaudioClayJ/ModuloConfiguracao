@@ -35,17 +35,17 @@
             System.Windows.Forms.Label nomeUsuarioLabel;
             System.Windows.Forms.Label senhaLabel;
             this.nomeTextBox = new System.Windows.Forms.TextBox();
-            this.usuarioBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.cPFTextBox = new System.Windows.Forms.TextBox();
             this.emailTextBox = new System.Windows.Forms.TextBox();
             this.nomeUsuarioTextBox = new System.Windows.Forms.TextBox();
             this.senhaTextBox = new System.Windows.Forms.TextBox();
             this.ConfirmarSenha = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBoxConfirmarSenha = new System.Windows.Forms.TextBox();
             this.ativoCheckBox = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
             this.buttonSalvarUsuario = new System.Windows.Forms.Button();
             this.buttonCancelarUsuario = new System.Windows.Forms.Button();
+            this.usuarioBindingSource = new System.Windows.Forms.BindingSource(this.components);
             nomeLabel = new System.Windows.Forms.Label();
             cPFLabel = new System.Windows.Forms.Label();
             emailLabel = new System.Windows.Forms.Label();
@@ -107,10 +107,6 @@
             this.nomeTextBox.Size = new System.Drawing.Size(173, 22);
             this.nomeTextBox.TabIndex = 2;
             // 
-            // usuarioBindingSource
-            // 
-            this.usuarioBindingSource.DataSource = typeof(Models.Usuario);
-            // 
             // cPFTextBox
             // 
             this.cPFTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.usuarioBindingSource, "CPF", true));
@@ -152,12 +148,12 @@
             this.ConfirmarSenha.TabIndex = 10;
             this.ConfirmarSenha.Text = "Confirmar Senha";
             // 
-            // textBox1
+            // textBoxConfirmarSenha
             // 
-            this.textBox1.Location = new System.Drawing.Point(475, 266);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(142, 22);
-            this.textBox1.TabIndex = 11;
+            this.textBoxConfirmarSenha.Location = new System.Drawing.Point(475, 266);
+            this.textBoxConfirmarSenha.Name = "textBoxConfirmarSenha";
+            this.textBoxConfirmarSenha.Size = new System.Drawing.Size(142, 22);
+            this.textBoxConfirmarSenha.TabIndex = 11;
             // 
             // ativoCheckBox
             // 
@@ -198,6 +194,10 @@
             this.buttonCancelarUsuario.Text = "Cancelar";
             this.buttonCancelarUsuario.UseVisualStyleBackColor = true;
             // 
+            // usuarioBindingSource
+            // 
+            this.usuarioBindingSource.DataSource = typeof(Models.Usuario);
+            // 
             // FormCadastroUsuario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -207,7 +207,7 @@
             this.Controls.Add(this.buttonSalvarUsuario);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.ativoCheckBox);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.textBoxConfirmarSenha);
             this.Controls.Add(this.ConfirmarSenha);
             this.Controls.Add(senhaLabel);
             this.Controls.Add(this.senhaTextBox);
@@ -237,7 +237,7 @@
         private System.Windows.Forms.TextBox nomeUsuarioTextBox;
         private System.Windows.Forms.TextBox senhaTextBox;
         private System.Windows.Forms.Label ConfirmarSenha;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBoxConfirmarSenha;
         private System.Windows.Forms.CheckBox ativoCheckBox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button buttonSalvarUsuario;

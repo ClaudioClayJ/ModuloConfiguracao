@@ -39,5 +39,10 @@ namespace BLL
         {
             return new GrupoUsuarioDAL().BuscarPorNomeGrupo(_nomegrupo);
         }
+
+        public void Excluir(int _Id)
+        {
+            new GrupoUsuarioDAL().Excluir(_Id);
+        }
     }
 }

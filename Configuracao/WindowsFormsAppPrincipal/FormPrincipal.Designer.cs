@@ -68,7 +68,8 @@
             // 
             this.grupoDeSuarioToolStripMenuItem.Name = "grupoDeSuarioToolStripMenuItem";
             this.grupoDeSuarioToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.grupoDeSuarioToolStripMenuItem.Text = "Grupo de suario";
+            this.grupoDeSuarioToolStripMenuItem.Text = "Grupos de Usuarios";
+            this.grupoDeSuarioToolStripMenuItem.Click += new System.EventHandler(this.grupoDeSuarioToolStripMenuItem_Click);
             // 
             // permissaoToolStripMenuItem
             // 

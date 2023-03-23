@@ -45,8 +45,8 @@ namespace WindowsFormsAppPrincipal
 
         private void buttonAlterar_Click(object sender, EventArgs e)
         {
-            int Id = ((Usuario)usuarioBindingSource.Current).Id;
-            using (FormCadastroUsuario frm = new FormCadastroUsuario(Id))
+            int id = ((Usuario)usuarioBindingSource.Current).Id;
+            using (FormCadastroUsuario frm = new FormCadastroUsuario(id))
             {
                 frm.ShowDialog();
             }
@@ -75,5 +75,20 @@ namespace WindowsFormsAppPrincipal
             }
         }
 
+        private void buttonExcluirGrupoUsuario_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int idGrupoUsuario = ((GrupoUsuario)grupoUsuariosBindingSource.Current).Id;
+                int IdUsuario = ((Usuario)usuarioBindingSource.Current).Id;
+                new UsuarioBLL().RemoverGrupoUsuario(IdUsuario, idGrupoUsuario);
+                grupoUsuariosBindingSource.RemoveCurrent();
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+        }
     }
 }
