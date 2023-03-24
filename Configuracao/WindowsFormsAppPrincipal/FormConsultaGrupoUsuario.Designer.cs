@@ -30,6 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             this.grupoUsuarioDataGridView = new System.Windows.Forms.DataGridView();
+            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nomeGrupoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.grupoUsuarioBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.textBoxBuscar = new System.Windows.Forms.TextBox();
             this.buttonBuscarGrupoUsuario = new System.Windows.Forms.Button();
@@ -37,8 +39,6 @@
             this.buttonCancelarConsulta = new System.Windows.Forms.Button();
             this.labelTextBox = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nomeGrupoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.grupoUsuarioDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grupoUsuarioBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -57,6 +57,22 @@
             this.grupoUsuarioDataGridView.RowTemplate.Height = 24;
             this.grupoUsuarioDataGridView.Size = new System.Drawing.Size(898, 319);
             this.grupoUsuarioDataGridView.TabIndex = 1;
+            // 
+            // idDataGridViewTextBoxColumn
+            // 
+            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
+            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
+            this.idDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            this.idDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // nomeGrupoDataGridViewTextBoxColumn
+            // 
+            this.nomeGrupoDataGridViewTextBoxColumn.DataPropertyName = "NomeGrupo";
+            this.nomeGrupoDataGridViewTextBoxColumn.HeaderText = "NomeGrupo";
+            this.nomeGrupoDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.nomeGrupoDataGridViewTextBoxColumn.Name = "nomeGrupoDataGridViewTextBoxColumn";
+            this.nomeGrupoDataGridViewTextBoxColumn.Width = 125;
             // 
             // grupoUsuarioBindingSource
             // 
@@ -117,22 +133,6 @@
             this.label2.Size = new System.Drawing.Size(159, 16);
             this.label2.TabIndex = 7;
             this.label2.Text = "Informe o nome  do grupo";
-            // 
-            // idDataGridViewTextBoxColumn
-            // 
-            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
-            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
-            this.idDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-            this.idDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // nomeGrupoDataGridViewTextBoxColumn
-            // 
-            this.nomeGrupoDataGridViewTextBoxColumn.DataPropertyName = "NomeGrupo";
-            this.nomeGrupoDataGridViewTextBoxColumn.HeaderText = "NomeGrupo";
-            this.nomeGrupoDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.nomeGrupoDataGridViewTextBoxColumn.Name = "nomeGrupoDataGridViewTextBoxColumn";
-            this.nomeGrupoDataGridViewTextBoxColumn.Width = 125;
             // 
             // FormConsultaGrupoUsuario
             // 

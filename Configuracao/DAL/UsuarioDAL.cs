@@ -293,7 +293,7 @@ namespace DAL
             {
                 SqlCommand cmd = cn.CreateCommand();
                 cmd.Connection = cn;
-                cmd.CommandText = "SELECT 1 FROM UsuarioGrupoUsuario WHERE CodUsuario AND CodGrupoUsuario = @CodGrupoUsuario";
+                cmd.CommandText = "SELECT 1 FROM UsuarioGrupoUsuario WHERE CodUsuario = @CodUsuario AND CodGrupoUsuario = @CodGrupoUsuario";
                                   
                 cmd.CommandType = System.Data.CommandType.Text;
                 cmd.Parameters.AddWithValue("@CodUsuario", _idUsuario);

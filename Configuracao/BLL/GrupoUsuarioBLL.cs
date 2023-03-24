@@ -23,7 +23,7 @@ namespace BLL
         private void ValidarDados(GrupoUsuario _grupousuario)
         {
             if (_grupousuario.NomeGrupo.Length <= 3)
-                throw new Exception("A senha deve ter mais de 3 caracteres.");
+                throw new Exception("O nome do grupo deve ter mais de 3 caracteres.");
 
         }
 

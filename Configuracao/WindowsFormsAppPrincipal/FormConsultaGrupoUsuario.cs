@@ -47,8 +47,7 @@ namespace WindowsFormsAppPrincipal
             }
             catch (Exception ex)
             {
-
-                throw;
+                MessageBox.Show(ex.Message);
             }
         }
 

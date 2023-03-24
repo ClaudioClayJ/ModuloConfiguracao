@@ -27,7 +27,12 @@ namespace WindowsFormsAppPrincipal
 
         private void buttonAlterarGrupoUsuario_Click(object sender, EventArgs e)
         {
-
+            int id = ((GrupoUsuario)grupoUsuariosBindingSource.Current).Id;
+            using (FormCadastroGrupoUsuario frm = new FormCadastroGrupoUsuario(id))
+            {
+                frm.ShowDialog();
+            }
+            buttonBuscarPorGrupoUsuario_Click(null, null);
         }
 
         private void buttonAdicionarGrupoUsuario_Click(object sender, EventArgs e)

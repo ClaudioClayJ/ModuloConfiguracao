@@ -79,9 +79,9 @@ namespace DAL
             {
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = cn;
-                cmd.CommandText = "SELECT Id, NomeGrupo FROM GrupoUsuario LIKE NomeGrupo = @NomeGrupo";
+                cmd.CommandText = "SELECT Id, NomeGrupo FROM GrupoUsuario WHERE NomeGrupo LIKE @NomeGrupo";
                 cmd.CommandType = System.Data.CommandType.Text;
-                cmd.Parameters.AddWithValue("@NomeGrupo", _nomegrupo);
+                cmd.Parameters.AddWithValue("@NomeGrupo", "%" + _nomegrupo + "%");
                 cn.Open();
                 using (SqlDataReader rd = cmd.ExecuteReader())
                 {
@@ -97,7 +97,7 @@ namespace DAL
             }
             catch (Exception ex)
             {
-                throw new Exception("Ocorreu um erro ao tentar buscar o nome do grupo no banco de dados", ex);
+                throw new Exception("Ocorreu um erro ao tentar buscar grupo de usuário por nome no banco de dados", ex);
             }
             finally
             {
