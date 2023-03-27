@@ -55,5 +55,44 @@ namespace WindowsFormsAppPrincipal
             grupoUsuariosBindingSource.RemoveCurrent();
             MessageBox.Show("Registro excluido com sucesso!");
         }
+
+        private void buttonAdicionarPermissao_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using(FormConsultaPermissao frm = new FormConsultaPermissao())
+                {
+                    frm.ShowDialog();
+                    if (frm.Id != 0)
+                    {
+                        int idGrupoUsuario = ((GrupoUsuario)grupoUsuariosBindingSource.Current).Id;
+                        new GrupoUsuarioBLL().AdicionarPermissao(idGrupoUsuario, frm.Id);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void buttonExcluirPermissao_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int idGrupoUsuario = ((GrupoUsuario)grupoUsuariosBindingSource.Current).Id;
+                int idPermissao = ((Permissao)permissaoBindingSource.Current).Id;
+                new GrupoUsuarioBLL().RemoverPermissao(idPermissao, idGrupoUsuario);
+                permissaoBindingSource.RemoveCurrent();
+                MessageBox.Show("Registro excluido com sucesso!");
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+        }
     }
 }

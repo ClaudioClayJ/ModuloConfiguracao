@@ -187,6 +187,7 @@
             this.buttonAdicionarPermissao.TabIndex = 7;
             this.buttonAdicionarPermissao.Text = "Adicionar";
             this.buttonAdicionarPermissao.UseVisualStyleBackColor = true;
+            this.buttonAdicionarPermissao.Click += new System.EventHandler(this.buttonAdicionarPermissao_Click);
             // 
             // buttonExcluirPermissao
             // 
@@ -196,6 +197,7 @@
             this.buttonExcluirPermissao.TabIndex = 8;
             this.buttonExcluirPermissao.Text = "Excluir";
             this.buttonExcluirPermissao.UseVisualStyleBackColor = true;
+            this.buttonExcluirPermissao.Click += new System.EventHandler(this.buttonExcluirPermissao_Click);
             // 
             // FormBuscarGrupoUsuario
             // 

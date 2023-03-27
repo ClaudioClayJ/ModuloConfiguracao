@@ -63,5 +63,14 @@ namespace BLL
         {
             new UsuarioDAL().RemoverGrupoUsuario(_idUsuario, _idGrupoUsuario);
         }
+
+        public void Altenticar(string _nomeUsuario, string _senha)
+        {
+            Usuario usuario = new UsuarioDAL().BuscarPorNomeUsuario(_nomeUsuario);
+            if (_senha == usuario.Senha && usuario.Ativo)
+                Constante.IdUsuarioLogado = usuario.Id;
+            else
+                throw new Exception("Usuario ou senha invalido.");
+        }
     }
 }

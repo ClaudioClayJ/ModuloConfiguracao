@@ -53,7 +53,7 @@ namespace DAL
                 cn.Open();
                 using (SqlDataReader rd = cmd.ExecuteReader())
                 {
-                    while(rd.Read())
+                    while (rd.Read())
                     {
                         usuario = new Usuario();
                         usuario.Id = Convert.ToInt32(rd["Id"]);
@@ -69,7 +69,7 @@ namespace DAL
                 }
                 return usuarios;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw new Exception("Ocorreu um erro ao tentar buscar todos os usuarios no banco de dados", ex);
             }
@@ -78,12 +78,11 @@ namespace DAL
                 cn.Close();
             }
         }
-        public List<Usuario> BuscarPorNomeUsuario(string _nomeUsuario)
+        public Usuario BuscarPorNomeUsuario(string _nomeUsuario)
         {
             SqlConnection cn = new SqlConnection(Conexao.StringDeConexao);
 
-            List<Usuario> usuarios = new List<Usuario>();
-            Usuario usuario;
+            Usuario usuario = new Usuario();
             try
             {
                 SqlCommand cmd = new SqlCommand();
@@ -96,7 +95,6 @@ namespace DAL
                 {
                     if (rd.Read())
                     {
-                        usuario = new Usuario();
                         usuario.Id = Convert.ToInt32(rd["Id"]);
                         usuario.Nome = rd["Nome"].ToString();
                         usuario.NomeUsuario = rd["NomeUsuario"].ToString();
@@ -106,7 +104,7 @@ namespace DAL
                         usuario.Senha = rd["Senha"].ToString();
                     }
                 }
-                return usuarios;
+                return usuario;
             }
             catch (Exception ex)
             {
@@ -132,7 +130,7 @@ namespace DAL
                 cn.Open();
                 using (SqlDataReader rd = cmd.ExecuteReader())
                 {
-                    if(rd.Read())
+                    if (rd.Read())
                     {
                         usuario = new Usuario();
                         usuario.Id = Convert.ToInt32(rd["Id"]);
@@ -156,7 +154,7 @@ namespace DAL
             }
         }
 
-    public void Alterar(Usuario _usuario, string _confirmarSenha)
+        public void Alterar(Usuario _usuario, string _confirmarSenha)
         {
             SqlConnection cn = new SqlConnection(Conexao.StringDeConexao);
             try
@@ -195,7 +193,7 @@ namespace DAL
                 SqlCommand cmd = cn.CreateCommand();
                 cmd.CommandText = "DELETE FROM Usuario WHERE Id=@Id";
                 cmd.CommandType = System.Data.CommandType.Text;
-              
+
                 cmd.Parameters.AddWithValue("@Id", _id);
 
                 cmd.Connection = cn;
@@ -228,7 +226,7 @@ namespace DAL
                 {
                     if (rd.Read())
                     {
-                
+
                         usuario.Id = Convert.ToInt32(rd["Id"]);
                         usuario.Nome = rd["Nome"].ToString();
                         usuario.NomeUsuario = rd["NomeUsuario"].ToString();
@@ -294,7 +292,7 @@ namespace DAL
                 SqlCommand cmd = cn.CreateCommand();
                 cmd.Connection = cn;
                 cmd.CommandText = "SELECT 1 FROM UsuarioGrupoUsuario WHERE CodUsuario = @CodUsuario AND CodGrupoUsuario = @CodGrupoUsuario";
-                                  
+
                 cmd.CommandType = System.Data.CommandType.Text;
                 cmd.Parameters.AddWithValue("@CodUsuario", _idUsuario);
                 cmd.Parameters.AddWithValue("@CodGrupoUsuario", _idGrupoUsuario);

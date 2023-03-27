@@ -19,6 +19,10 @@ namespace WindowsFormsAppPrincipal
         {
             InitializeComponent();
             Id = _id;
+            if(Id != 0)
+            {
+                grupoUsuarioBindingSource.DataSource = new GrupoUsuarioBLL().BuscarPorId(_id);
+            }
         }
 
         private void FormCadastroGrupoUsuario_Load(object sender, EventArgs e)
