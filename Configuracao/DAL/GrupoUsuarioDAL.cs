@@ -55,6 +55,7 @@ namespace DAL
                         grupousuario = new GrupoUsuario();
                         grupousuario.Id = Convert.ToInt32(rd["Id"]);
                         grupousuario.NomeGrupo = rd["NomeGrupo"].ToString();
+                        grupousuario.Permissoes = new PermissaoDAL().BuscarPorIdGrupoUsuario(grupousuario.Id);
                         grupousuarios.Add(grupousuario);
                     }
                 }

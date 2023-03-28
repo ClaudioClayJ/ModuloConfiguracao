@@ -149,7 +149,7 @@
             this.grupoUsuariosDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn8});
             this.grupoUsuariosDataGridView.DataSource = this.grupoUsuariosBindingSource;
-            this.grupoUsuariosDataGridView.Location = new System.Drawing.Point(875, 140);
+            this.grupoUsuariosDataGridView.Location = new System.Drawing.Point(875, 130);
             this.grupoUsuariosDataGridView.Name = "grupoUsuariosDataGridView";
             this.grupoUsuariosDataGridView.ReadOnly = true;
             this.grupoUsuariosDataGridView.RowHeadersWidth = 51;
@@ -180,9 +180,10 @@
             // 
             // buttonBuscar
             // 
+            this.buttonBuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonBuscar.Location = new System.Drawing.Point(408, 68);
             this.buttonBuscar.Name = "buttonBuscar";
-            this.buttonBuscar.Size = new System.Drawing.Size(84, 36);
+            this.buttonBuscar.Size = new System.Drawing.Size(87, 37);
             this.buttonBuscar.TabIndex = 4;
             this.buttonBuscar.Text = "&Buscar";
             this.buttonBuscar.UseVisualStyleBackColor = true;
@@ -190,51 +191,56 @@
             // 
             // buttonAlterar
             // 
+            this.buttonAlterar.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonAlterar.Location = new System.Drawing.Point(523, 68);
             this.buttonAlterar.Name = "buttonAlterar";
             this.buttonAlterar.Size = new System.Drawing.Size(85, 37);
             this.buttonAlterar.TabIndex = 4;
-            this.buttonAlterar.Text = "Alterar";
+            this.buttonAlterar.Text = "&Alterar";
             this.buttonAlterar.UseVisualStyleBackColor = true;
             this.buttonAlterar.Click += new System.EventHandler(this.buttonAlterar_Click);
             // 
             // buttonAdicionar
             // 
-            this.buttonAdicionar.Location = new System.Drawing.Point(634, 68);
+            this.buttonAdicionar.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonAdicionar.Location = new System.Drawing.Point(621, 71);
             this.buttonAdicionar.Name = "buttonAdicionar";
-            this.buttonAdicionar.Size = new System.Drawing.Size(80, 37);
+            this.buttonAdicionar.Size = new System.Drawing.Size(94, 30);
             this.buttonAdicionar.TabIndex = 4;
-            this.buttonAdicionar.Text = "Adicionar";
+            this.buttonAdicionar.Text = "A&dicionar";
             this.buttonAdicionar.UseVisualStyleBackColor = true;
             this.buttonAdicionar.Click += new System.EventHandler(this.buttonAdicionar_Click);
             // 
             // buttonExcluirUsuario
             // 
+            this.buttonExcluirUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonExcluirUsuario.Location = new System.Drawing.Point(731, 68);
             this.buttonExcluirUsuario.Name = "buttonExcluirUsuario";
             this.buttonExcluirUsuario.Size = new System.Drawing.Size(81, 37);
             this.buttonExcluirUsuario.TabIndex = 4;
-            this.buttonExcluirUsuario.Text = "Excluir";
+            this.buttonExcluirUsuario.Text = "&Excluir";
             this.buttonExcluirUsuario.UseVisualStyleBackColor = true;
             this.buttonExcluirUsuario.Click += new System.EventHandler(this.buttonExcluirUsuario_Click);
             // 
             // buttonExcluirGrupoUsuario
             // 
+            this.buttonExcluirGrupoUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonExcluirGrupoUsuario.Location = new System.Drawing.Point(1351, 82);
             this.buttonExcluirGrupoUsuario.Name = "buttonExcluirGrupoUsuario";
             this.buttonExcluirGrupoUsuario.Size = new System.Drawing.Size(81, 42);
             this.buttonExcluirGrupoUsuario.TabIndex = 4;
-            this.buttonExcluirGrupoUsuario.Text = "Excluir Grupo";
+            this.buttonExcluirGrupoUsuario.Text = "E&xcluir Grupo";
             this.buttonExcluirGrupoUsuario.UseVisualStyleBackColor = true;
             this.buttonExcluirGrupoUsuario.Click += new System.EventHandler(this.buttonExcluirGrupoUsuario_Click);
             // 
             // buttonAdicionarGrupoUsuario
             // 
-            this.buttonAdicionarGrupoUsuario.Location = new System.Drawing.Point(1239, 81);
+            this.buttonAdicionarGrupoUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonAdicionarGrupoUsuario.Location = new System.Drawing.Point(1233, 81);
             this.buttonAdicionarGrupoUsuario.Name = "buttonAdicionarGrupoUsuario";
-            this.buttonAdicionarGrupoUsuario.Size = new System.Drawing.Size(87, 42);
+            this.buttonAdicionarGrupoUsuario.Size = new System.Drawing.Size(94, 43);
             this.buttonAdicionarGrupoUsuario.TabIndex = 4;
-            this.buttonAdicionarGrupoUsuario.Text = "Adicionar Grupo";
+            this.buttonAdicionarGrupoUsuario.Text = "Adi&cionar Grupo";
             this.buttonAdicionarGrupoUsuario.UseVisualStyleBackColor = true;
             this.buttonAdicionarGrupoUsuario.Click += new System.EventHandler(this.buttonAdicionarGrupoUsuario_Click);
             // 
