@@ -264,6 +264,7 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Gestão de Usuario";
+            this.Load += new System.EventHandler(this.FormBuscarUsuario_Load);
             ((System.ComponentModel.ISupportInitialize)(this.usuarioDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.usuarioBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grupoUsuariosDataGridView)).EndInit();

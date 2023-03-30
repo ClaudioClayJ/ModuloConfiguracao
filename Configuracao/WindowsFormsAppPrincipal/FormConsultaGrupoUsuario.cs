@@ -51,5 +51,9 @@ namespace WindowsFormsAppPrincipal
             }
         }
 
+        private void FormConsultaGrupoUsuario_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

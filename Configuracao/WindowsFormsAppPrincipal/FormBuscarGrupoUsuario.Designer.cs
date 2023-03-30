@@ -215,6 +215,7 @@
             this.Controls.Add(this.grupoUsuariosDataGridView);
             this.Name = "FormBuscarGrupoUsuario";
             this.Text = "FormBuscarGrupoUsuario";
+            this.Load += new System.EventHandler(this.FormBuscarGrupoUsuario_Load);
             ((System.ComponentModel.ISupportInitialize)(this.grupoUsuariosDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grupoUsuariosBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.permissaoBindingSource)).EndInit();

@@ -84,6 +84,7 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Login";
             this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // labelUsuario
             // 
@@ -118,6 +119,7 @@
             this.KeyPreview = true;
             this.Name = "FormLogin";
             this.Text = "FormLogin";
+            this.Load += new System.EventHandler(this.FormLogin_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FormLogin_KeyDown);
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -90,5 +90,10 @@ namespace WindowsFormsAppPrincipal
                 MessageBox.Show(ex.Message);
             }
         }
+
+        private void FormBuscarUsuario_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

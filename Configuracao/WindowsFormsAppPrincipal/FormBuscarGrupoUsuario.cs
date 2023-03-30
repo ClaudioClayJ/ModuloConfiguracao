@@ -81,6 +81,7 @@ namespace WindowsFormsAppPrincipal
         {
             try
             {
+
                 int idGrupoUsuario = ((GrupoUsuario)grupoUsuariosBindingSource.Current).Id;
                 int idPermissao = ((Permissao)permissaoBindingSource.Current).Id;
                 new GrupoUsuarioBLL().RemoverPermissao(idPermissao, idGrupoUsuario);
@@ -93,6 +94,11 @@ namespace WindowsFormsAppPrincipal
 
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void FormBuscarGrupoUsuario_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

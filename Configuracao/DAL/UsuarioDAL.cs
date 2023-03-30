@@ -1,6 +1,7 @@
 ﻿using Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Data.SqlClient;
 using System.Security.Cryptography;
 
@@ -184,29 +185,81 @@ namespace DAL
             }
         }
 
-        public void Excluir(int _id)
+        public void Excluir(int _id, SqlTransaction _transaction = null)
         {
 
-            SqlConnection cn = new SqlConnection(Conexao.StringDeConexao);
-            try
-            {
-                SqlCommand cmd = cn.CreateCommand();
-                cmd.CommandText = "DELETE FROM Usuario WHERE Id=@Id";
-                cmd.CommandType = System.Data.CommandType.Text;
+            SqlTransaction transaction = null;
 
-                cmd.Parameters.AddWithValue("@Id", _id);
+            using (SqlConnection cn = new SqlConnection(Conexao.StringDeConexao))
+            {
 
-                cmd.Connection = cn;
-                cn.Open();
-                cmd.ExecuteNonQuery();
+                using (SqlCommand cmd = new SqlCommand("DELETE FROM Usuario WHERE Id=@Id", cn))
+                    try
+                    {
+                        cmd.CommandType = System.Data.CommandType.Text;
+                        cmd.Parameters.AddWithValue("@Id", _id);
+
+                        if (_transaction == null)
+                        {
+                            cn.Open();
+                            transaction = cn.BeginTransaction();
+
+                        }
+                        cmd.Transaction = transaction;
+                        cmd.Connection = transaction.Connection;
+
+                        RemoverTodosGrupos(_id, transaction);
+                        cmd.ExecuteNonQuery();
+                        if (_transaction == null)
+                        {
+                            transaction.Commit();
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        transaction.Rollback();
+                        throw new Exception("ocorreu um erro ao tentar excluir o registro no banco de dados: ", ex);
+                    }
+
             }
-            catch (Exception ex)
+        }
+
+        private void RemoverTodosGrupos(int _id, SqlTransaction _transaction)
+        {
+
+            SqlTransaction transaction = null;
+
+            using (SqlConnection cn = new SqlConnection(Conexao.StringDeConexao))
             {
-                throw new Exception("ocorreu um erro ao tentar excluir o usuario no banco de dados: ", ex);
-            }
-            finally
-            {
-                cn.Close();
+
+                using (SqlCommand cmd = new SqlCommand("DELETE FROM UsuarioGrupoUsuario WHERE Id=@Id", cn))
+                    try
+                    {
+                        cmd.CommandType = System.Data.CommandType.Text;
+                        cmd.Parameters.AddWithValue("@Id", _id);
+
+                        if (_transaction == null)
+                        {
+                            cn.Open();
+                            transaction = cn.BeginTransaction();
+
+                        }
+                        cmd.Transaction = transaction;
+                        cmd.Connection = transaction.Connection;
+
+                        RemoverTodosGrupos(_id, transaction);
+                        cmd.ExecuteNonQuery();
+                        if (_transaction == null)
+                        {
+                            transaction.Commit();
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        transaction.Rollback();
+                        throw new Exception("ocorreu um erro ao tentar excluir o registro no banco de dados: ", ex);
+                    }
+
             }
         }
 
@@ -291,11 +344,11 @@ namespace DAL
             {
                 SqlCommand cmd = cn.CreateCommand();
                 cmd.Connection = cn;
-                cmd.CommandText = "SELECT 1 FROM UsuarioGrupoUsuario WHERE CodUsuario = @CodUsuario AND CodGrupoUsuario = @CodGrupoUsuario";
+                cmd.CommandText = "SELECT 1 FROM UsuarioGrupoUsuario WHERE IdUsuario = @IdUsuario AND IdGrupoUsuario = @IdGrupoUsuario";
 
                 cmd.CommandType = System.Data.CommandType.Text;
-                cmd.Parameters.AddWithValue("@CodUsuario", _idUsuario);
-                cmd.Parameters.AddWithValue("@CodGrupoUsuario", _idGrupoUsuario);
+                cmd.Parameters.AddWithValue("@IdUsuario", _idUsuario);
+                cmd.Parameters.AddWithValue("@IdGrupoUsuario", _idGrupoUsuario);
                 cn.Open();
                 cmd.ExecuteNonQuery();
                 using (SqlDataReader rd = cmd.ExecuteReader())
@@ -321,11 +374,11 @@ namespace DAL
             try
             {
                 SqlCommand cmd = cn.CreateCommand();
-                cmd.CommandText = @"INSERT INTO UsuarioGrupoUsuario(CodUsuario,CodGrupoUsuario)
-                                    VALUES(@CodUsuario,@CodGrupoUsuario)";
+                cmd.CommandText = @"INSERT INTO UsuarioGrupoUsuario(IdUsuario,IdGrupoUsuario)
+                                    VALUES(@IdUsuario,@IdGrupoUsuario)";
                 cmd.CommandType = System.Data.CommandType.Text;
-                cmd.Parameters.AddWithValue("@CodUsuario", _idUsuario);
-                cmd.Parameters.AddWithValue("@CodGrupoUsuario", _idGrupoUsuario);
+                cmd.Parameters.AddWithValue("@IdUsuario", _idUsuario);
+                cmd.Parameters.AddWithValue("@IdGrupoUsuario", _idGrupoUsuario);
                 cmd.Connection = cn;
                 cn.Open();
                 cmd.ExecuteNonQuery();
@@ -346,10 +399,10 @@ namespace DAL
             try
             {
                 SqlCommand cmd = cn.CreateCommand();
-                cmd.CommandText = "DELETE FROM UsuarioGrupoUsuario WHERE CodUsuario = @CodUsuario AND CodGrupoUsuario = @CodGrupoUsuario";
+                cmd.CommandText = "DELETE FROM UsuarioGrupoUsuario WHERE IdUsuario = @IdUsuario AND IdGrupoUsuario = @IdGrupoUsuario";
                 cmd.CommandType = System.Data.CommandType.Text;
-                cmd.Parameters.AddWithValue("@CodUsuario", _idUsuario);
-                cmd.Parameters.AddWithValue("@CodGrupoUsuario", _idGrupoUsuario);
+                cmd.Parameters.AddWithValue("@IdUsuario", _idUsuario);
+                cmd.Parameters.AddWithValue("@IdGrupoUsuario", _idGrupoUsuario);
 
                 cmd.Connection = cn;
                 cn.Open();

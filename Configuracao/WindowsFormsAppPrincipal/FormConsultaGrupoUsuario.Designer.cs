@@ -150,6 +150,7 @@
             this.MinimizeBox = false;
             this.Name = "FormConsultaGrupoUsuario";
             this.Text = "FormConsultaGrupoUsuario";
+            this.Load += new System.EventHandler(this.FormConsultaGrupoUsuario_Load);
             ((System.ComponentModel.ISupportInitialize)(this.grupoUsuarioDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grupoUsuarioBindingSource)).EndInit();
             this.ResumeLayout(false);

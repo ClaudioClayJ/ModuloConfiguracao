@@ -195,10 +195,10 @@ namespace DAL
                 SqlCommand cmd = cn.CreateCommand();
                 cmd.Connection = cn;
                 cmd.CommandText = @"SELECT Permissao.Id, Permissao.Descricao FROM Permissao
-                                    INNER JOIN PermissaoGrupoUsuario ON Permissao.Id = PermissaoGrupoUsuario.CodPermissao
-                                    WHERE PermissaoGrupoUsuario.CodGrupoUsuario = @CodGrupoUsuario";
+                                    INNER JOIN PermissaoGrupoUsuario ON Permissao.Id = PermissaoGrupoUsuario.IdPermissao
+                                    WHERE PermissaoGrupoUsuario.IdGrupoUsuario = @IdGrupoUsuario";
                 cmd.CommandType = System.Data.CommandType.Text;
-                cmd.Parameters.AddWithValue("@CodGrupoUsuario", _idGrupoUsuario);
+                cmd.Parameters.AddWithValue("@IdGrupoUsuario", _idGrupoUsuario);
                 cn.Open();
                 using (SqlDataReader rd = cmd.ExecuteReader())
                 {
